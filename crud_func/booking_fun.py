@@ -2,10 +2,21 @@ from fastapi import HTTPException, status
 from schemas.booking import BookFlight
 from sqlalchemy.orm import Session
 from models.booking import Booking
+from models.routes import Route
+from models.flights import Flight
 
 
 def book_new_flight(obj: BookFlight, db: Session):
-    new_booking = Booking(**obj.dict())
+    ref = db.query(Route).get(obj.route_id)
+    # flight_id = ref.flight_id
+    flight = db.query(Flight).get(ref.flight_id)
+    flightname = flight.flight_name
+    new_booking = Booking(
+        user_id = obj.user_id,
+        route_id = obj.route_id,
+        price = obj.price,
+        flight_name = flightname
+    )
     db.add(new_booking)
     db.commit()
     db.refresh(new_booking)

@@ -23,7 +23,7 @@ def create_passenger(passenger: PassengerCreate, db: Session = Depends(get_db)):
     response_model=List[ShowPassenger],
     status_code=status.HTTP_200_OK,
 )
-def get_users(db: Session = Depends(get_db)):
+def get_passengers(db: Session = Depends(get_db)):
     ref = get_all_passengers(db=db)
     return ref
 

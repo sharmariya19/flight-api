@@ -9,4 +9,4 @@ class Booking(Base):
     user_id = Column(Integer, ForeignKey("passenger.id"))
     route_id = Column(Integer, ForeignKey("route.id"))
     price = Column(Integer)
-    flight_name = Column(String, ForeignKey("flight.flight_name"))
+    flight_name = Column(String)

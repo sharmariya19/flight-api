@@ -19,13 +19,13 @@ def create_flight(flight: FlightCreate, db: Session = Depends(get_db)):
 
 
 @router.get( "/flight",response_model=List[ShowFlight],status_code=status.HTTP_200_OK)
-def get_users(db: Session = Depends(get_db)):
+def get_flights(db: Session = Depends(get_db)):
     ref = get_all_flights(db=db)
     return ref
 
 
 @router.delete("/flight/{id}" , response_model=ShowFlight,status_code=status.HTTP_200_OK)
-def delete_passenger(id:int , db:Session= Depends(get_db)):
+def delete_flight(id:int , db:Session= Depends(get_db)):
     obj = delete_flight_by_id(id=id, db=db)
     # return {"msg": "Successfully deleted."}
     return obj
