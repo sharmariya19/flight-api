@@ -5,3 +5,5 @@ python-dotenv
 sqlalchemy
 
 pydantic
+psycopg2
+passlib

@@ -7,7 +7,3 @@ class Hasher:
     @staticmethod
     def get_password_hash(plain_password):
         return pwd_context.hash(plain_password)
-
-    @staticmethod
-    def verify_password(plain_password, hash_password):
-        return pwd_context.verify(plain_password, hash_password)

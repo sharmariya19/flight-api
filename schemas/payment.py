@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
+from datetime import datetime
 
 class CreatePayment(BaseModel):
     booking_id:int
@@ -9,6 +10,5 @@ class CreatePayment(BaseModel):
 class ShowPayment(CreatePayment):
     id:int
     paid_amount:int
-
     class Config:
         orm_mode=True
