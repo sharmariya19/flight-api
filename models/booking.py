@@ -6,7 +6,8 @@ class Booking(Base):
     __tablename__ = "booking"
     
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("passenger.id"))
+    passenger_id = Column(Integer, ForeignKey("passenger.id"))
     route_id = Column(Integer, ForeignKey("route.id"))
-    price = Column(Integer)
+    # price = Column(Integer)
+    status = Column(String, default = "Pending")
     flight_name = Column(String)

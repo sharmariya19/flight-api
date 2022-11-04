@@ -8,13 +8,11 @@ from models.flights import Flight
 
 def book_new_flight(obj: BookFlight, db: Session):
     ref = db.query(Route).get(obj.route_id)
-    # flight_id = ref.flight_id
     flight = db.query(Flight).get(ref.flight_id)
     flightname = flight.flight_name
     new_booking = Booking(
-        user_id = obj.user_id,
+        passenger_id = obj.passenger_id,
         route_id = obj.route_id,
-        price = obj.price,
         flight_name = flightname
     )
     db.add(new_booking)
@@ -37,4 +35,12 @@ def delete_booking_by_id(id:int, db:Session):
         db.delete(ref)
     db.commit()
 
+    return ref
+
+def booking_done(id:int, db:Session):
+    ref = db.query(Booking).get(id)
+    ref.status = "Booked"
+
+    db.commit()
+    db.refresh(ref)
     return ref

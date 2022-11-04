@@ -2,12 +2,12 @@ from pydantic import BaseModel
 
 
 class BookFlight(BaseModel):
-    user_id:int
+    passenger_id:int
     route_id:int
-    price:int
 
 class ShowBookedFlight(BookFlight):
-    flight_name:str
     id:int
+    flight_name:str
+    status:str
     class Config:
         orm_mode = True

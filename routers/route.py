@@ -28,3 +28,11 @@ def get_routes(db: Session = Depends(get_db)):
 def delete_route(id:int , db:Session= Depends(get_db)):
     obj = delete_route_by_id(id=id, db=db)
     return obj
+
+@router.get("/route/{source}/{destination}",response_model = List[ShowRoute],  status_code=status.HTTP_200_OK)
+def get_flights(source:str, destination:str, db:Session = Depends(get_db)):
+    obj = db.query(Route).filter(Route.source == source.lower() , Route.destination == destination.lower()).all()
+    if obj:
+        return obj
+    else:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= "No flights between these citites")
