@@ -1,11 +1,11 @@
 from pydantic import BaseModel
 
 
-class DiscountCreate(BaseModel):
+class CouponCreate(BaseModel):
     discount_type:str
     discount:int
 
-class ShowDiscount(DiscountCreate):
+class ShowCoupon(CouponCreate):
     id:int
     class Config:
         orm_mode = True

@@ -1,5 +1,5 @@
 from database import Base
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey
 
 
 class Flight(Base):
@@ -9,5 +9,5 @@ class Flight(Base):
     start_loc = Column(String, nullable=False)
     end_loc = Column(String, nullable=False)
     flight_name = Column(String, nullable=False)
-    no_of_seats = Column(String, nullable=False)
-    day = Column(String, nullable=False)
+    coupon_id = Column(Integer, ForeignKey("coupon.id"), default= None)
+

@@ -1,5 +1,5 @@
 from database import Base
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey
 
 
 class Payment(Base):
@@ -10,6 +10,5 @@ class Payment(Base):
     booking_id = Column(Integer, ForeignKey("booking.id"))
     transaction_id = Column(String)
     payment_mode = Column(String, nullable = False)
-    coupon_id = Column(Integer, ForeignKey("discount.id"), nullable=True)
-    paid_amount = Column(Integer)
-    coupon_status = Column(String, nullable = False, default = "not applied")
+    paid_amount = Column(Integer, nullable = False, default=0)
+    coupon_status = Column(String, default = "Not Applied")

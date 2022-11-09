@@ -10,11 +10,11 @@ router = APIRouter( tags= ['flight'])
 
 
 @router.post(
-    "/flight", response_model=ShowFlight, status_code=status.HTTP_201_CREATED
+    "/flight", status_code=status.HTTP_201_CREATED
 )
 def create_flight(flight: FlightCreate, db: Session = Depends(get_db)):
     new_flight = create_new_flight(flight=flight, db=db)
-    return new_flight
+    return f"successfully created flight from {new_flight.start_loc} to {new_flight.end_loc}"
 
 
 
@@ -24,9 +24,8 @@ def get_flights(db: Session = Depends(get_db)):
     return ref
 
 
-@router.delete("/flight/{id}" , response_model=ShowFlight,status_code=status.HTTP_200_OK)
+@router.delete("/flight/{id}", status_code=status.HTTP_200_OK)
 def delete_flight(id:int , db:Session= Depends(get_db)):
     obj = delete_flight_by_id(id=id, db=db)
-    # return {"msg": "Successfully deleted."}
-    return obj
+    return f"successfully deleted flight with id:{id}"
 

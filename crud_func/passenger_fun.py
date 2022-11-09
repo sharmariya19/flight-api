@@ -8,6 +8,8 @@ from hashing import Hasher
 def create_new_passenger(passenger: PassengerCreate, db: Session):
     new_passenger = Passenger(
         name = passenger.name,
+        gender = passenger.gender,
+        age = passenger.age,
         contact = passenger.contact,
         email = passenger.email,
         nationality =  passenger.nationality,

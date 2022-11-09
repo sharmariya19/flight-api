@@ -7,13 +7,9 @@ from models.flights import Flight
 
 
 def book_new_flight(obj: BookFlight, db: Session):
-    ref = db.query(Route).get(obj.route_id)
-    flight = db.query(Flight).get(ref.flight_id)
-    flightname = flight.flight_name
     new_booking = Booking(
         passenger_id = obj.passenger_id,
-        route_id = obj.route_id,
-        flight_name = flightname
+        flight_route_id = obj.flight_route_id
     )
     db.add(new_booking)
     db.commit()

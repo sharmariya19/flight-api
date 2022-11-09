@@ -10,11 +10,11 @@ router = APIRouter(tags = ['passenger'])
 
 
 @router.post(
-    "/passenger", response_model=ShowPassenger, status_code=status.HTTP_201_CREATED
+    "/passenger", status_code=status.HTTP_201_CREATED
 )
 def create_passenger(passenger: PassengerCreate, db: Session = Depends(get_db)):
     new_passenger = create_new_passenger(passenger=passenger, db=db)
-    return new_passenger
+    return "passenger successfully registered"
 
 
 
@@ -28,7 +28,7 @@ def get_passengers(db: Session = Depends(get_db)):
     return ref
 
 
-@router.delete("/passenger/{id}" , response_model=ShowPassenger,status_code=status.HTTP_200_OK)
+@router.delete("/passenger/{id}", status_code=status.HTTP_200_OK)
 def delete_passenger(id:int , db:Session= Depends(get_db)):
     obj = delete_passenger_by_id(id=id, db=db)
-    return obj
+    return f"passenger with id:{id} successfully deleted"

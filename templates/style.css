@@ -1,0 +1,17 @@
+.nav{
+    color:rgb(188, 123, 123);
+    background-color: rgb(18, 18, 18);
+    height:3rem;
+
+}
+
+.nav-item{
+    background-color: rgb(177, 167, 247);
+    color:rgb(89, 3, 3);
+    border-radius: 25px;
+    margin: 5px;
+}
+
+.nav-link{
+    color:rgb(24, 192, 15);
+}

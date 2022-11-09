@@ -6,17 +6,7 @@ from models.flights import Flight
 
 
 def create_new_route(route: RouteCreate, db: Session):
-    ref = db.query(Flight).get(route.flight_id)
-    flightname = ref.flight_name
-    new_route = Route(
-        source = route.source.lower(),
-        destination = route.destination.lower(),
-        flight_id = route.flight_id,
-        fare = route.fare,
-        takeoff_time = route.takeoff_time,
-        landing_time = route.landing_time,
-        flight_name = flightname
-    )
+    new_route = Route(**route.dict())
     db.add(new_route)
     db.commit()
     db.refresh(new_route)
