@@ -6,6 +6,9 @@ from models.flights import Flight
 
 
 def create_new_route(route: RouteCreate, db: Session):
+    obj = db.query(Route).filter(route.source==Route.source, route.destination==Route.destination)
+    if obj:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="route already exist")
     new_route = Route(**route.dict())
     db.add(new_route)
     db.commit()

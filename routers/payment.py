@@ -2,17 +2,17 @@ from fastapi import APIRouter, Depends, status, HTTPException
 from schemas.payment import CreatePayment, ShowPayment
 from database import get_db
 from sqlalchemy.orm import Session
-from crud_func.payment_fun import create_new_payment, get_payment_by_id
+from crud_func.paymentfun import create_new_payment, get_payment_by_id
 from typing import List
 from models.payment import Payment
 
 router = APIRouter(tags = ['payment'])
 
 
-@router.post("/payment", response_model=ShowPayment, status_code=status.HTTP_201_CREATED)
+@router.post("/payment", status_code=status.HTTP_201_CREATED)
 def create_paymenet(payment: CreatePayment, db: Session = Depends(get_db)):
     new_payment = create_new_payment(payment = payment, db=db)
-    return new_payment
+    return "Payment is done... Check the booking status."
 
 
 

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, status, HTTPException
 from schemas.coupon import CouponCreate, ShowCoupon
 from database import get_db
 from sqlalchemy.orm import Session
-from crud_func.coupon_fun import create_new_coupon, delete_coupon_by_id, get_all_coupon
+from crud_func.couponfun import create_new_coupon, delete_coupon_by_id, get_all_coupon
 from models.coupon import Coupon
 from typing import List
 

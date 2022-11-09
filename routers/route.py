@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, status, HTTPException
 from schemas.routes import RouteCreate, ShowRoute
 from database import get_db
 from sqlalchemy.orm import Session
-from crud_func.route_fun import create_new_route, get_all_routes, delete_route_by_id
+from crud_func.routefun import create_new_route, get_all_routes, delete_route_by_id
 from typing import List
 from models.routes import Route
 

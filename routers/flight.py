@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, status, HTTPException
 from schemas.flights import FlightCreate, ShowFlight
 from database import get_db
 from sqlalchemy.orm import Session
-from crud_func.flight_fun import create_new_flight, get_all_flights, delete_flight_by_id
+from crud_func.flightfun import create_new_flight, get_all_flights, delete_flight_by_id
 from typing import List
 from models.flights import Flight
 
