@@ -94,7 +94,7 @@ def delete_booking_by_id(id:int, db:Session):
         )
     else:
         db.delete(ref)
-    db.commit()
+        db.commit()
     return ref
 
 

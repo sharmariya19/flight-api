@@ -5,6 +5,7 @@ from database import get_db
 from models.user import User
 from crud_func.userfun import create_new_user
 from hashing import Hasher
+from jose import jwt
 
 router = APIRouter(tags= ['loogin'])
 
@@ -17,5 +18,13 @@ def retrieve_token(form_data:OAuth2PasswordRequestForm = Depends(), db:Session=D
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid username")
 
     if not Hasher.verify_password(form_data.password, user.hash_password):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid pssword")
-    
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid password")
+
+
+    data = {"sub":form_data.username}
+    jwt_token = jwt.encode(data,"riya", algorithm="HS256")
+
+    return {"access_token":jwt_token, "token_type":"bearer"}
+
+
+

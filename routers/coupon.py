@@ -5,14 +5,16 @@ from sqlalchemy.orm import Session
 from crud_func.couponfun import create_new_coupon, delete_coupon_by_id, get_all_coupon
 from typing import List
 from routers.login import oauth2_scheme
+from crud_func.login import get_authorize
 
 router = APIRouter(tags = ['coupon'])
 
 
 @router.post("/coupon", status_code=status.HTTP_201_CREATED)
 def create_coupon(obj:CouponCreate, db: Session = Depends(get_db), token:str=Depends(oauth2_scheme)):
-    ref = create_new_coupon(obj = obj, db=db)
-    return "new coupon created"
+    if get_authorize(token,db):
+        ref = create_new_coupon(obj = obj, db=db)
+        return "new coupon created"
 
 
 @router.get("/coupon", response_model=List[ShowCoupon], status_code=status.HTTP_200_OK)
@@ -23,5 +25,6 @@ def get_coupon(db: Session = Depends(get_db)):
 
 @router.delete("/coupon/{id}", status_code=status.HTTP_200_OK)
 def delete_coupon(id:int , db:Session= Depends(get_db), token:str=Depends(oauth2_scheme)):
-    obj = delete_coupon_by_id(id=id, db=db)
-    return f"coupon with id:{id} successfully deleted"
+    if get_authorize(token ,db):
+        obj = delete_coupon_by_id(id=id, db=db)
+        return f"coupon with id:{id} successfully deleted"

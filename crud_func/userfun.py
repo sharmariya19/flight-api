@@ -12,7 +12,8 @@ def create_new_user(user: CreateUser, db: Session):
     new_user = User(
         name = user.name,
         email = user.email,
-        hash_password = Hasher.get_password_hash(user.password)
+        hash_password = Hasher.get_password_hash(user.password),
+        is_admin = user.is_admin
     )
     db.add(new_user)
     db.commit()

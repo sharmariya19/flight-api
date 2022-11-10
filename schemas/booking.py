@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from typing import Optional
 
 class BookFlight(BaseModel):
     passenger_id:int
@@ -11,7 +11,7 @@ class ShowBookedFlight(BaseModel):
     source:str
     destination:str
     status:str
-    transaction_id:str
+    transaction_id:Optional[str] = None
     amount:int
     class Config:
         orm_mode = True

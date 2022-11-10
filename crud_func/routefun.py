@@ -5,7 +5,7 @@ from models.routes import Route
 
 
 def create_new_route(route: RouteCreate, db: Session):
-    obj = db.query(Route).filter(route.source==Route.source, route.destination==Route.destination)
+    obj = db.query(Route).filter(route.source==Route.source, route.destination==Route.destination).first()
     if obj:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="route already exist")
     new_route = Route(**route.dict())

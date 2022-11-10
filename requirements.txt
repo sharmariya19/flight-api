@@ -9,3 +9,5 @@ psycopg2
 passlib
 
 python-multipart
+
+python-jose
