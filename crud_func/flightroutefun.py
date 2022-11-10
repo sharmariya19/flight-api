@@ -13,7 +13,7 @@ def flight_route(id:int, db:Session):
 
     ref = ShowFlightRoute(
         id = object.id,
-        flight_name = flight.flight_name,
+        airline_name = flight.airline_name,
         source = route.source,
         destination = route.destination,
         fare = object.fare,

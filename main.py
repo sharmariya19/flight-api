@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import coupon, passenger, flight, route, booking, payment, flightroute, login,user
+from routers import coupon, passenger, flight, route, booking, payment, flightroute, login, user
 from database import Base, engine
 
 app = FastAPI(title="Flights API")

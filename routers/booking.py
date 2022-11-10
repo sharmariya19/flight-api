@@ -14,7 +14,7 @@ router = APIRouter(tags = ['booking'])
 @router.post("/booking", status_code=status.HTTP_201_CREATED)
 def book_flight(obj: BookFlight, db: Session = Depends(get_db)):
     ref = book_new_flight(obj = obj, db=db)
-    return "booking is not done yet... complete the payment first."
+    return f"booking is not done yet... complete the payment first for your booking id {ref.id}."
 
 
 @router.get("/booking/{id}", response_model=ShowBookedFlight, status_code=status.HTTP_200_OK)

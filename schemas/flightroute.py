@@ -12,7 +12,7 @@ class CreateFlightRoute(FlightRoute):
 
 class ShowFlightRoute(FlightRoute):
     id:int
-    flight_name:str
+    airline_name:str
     source:str
     destination:str
     class Config:

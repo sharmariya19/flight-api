@@ -8,6 +8,6 @@ class Flight(Base):
     id = Column(Integer, primary_key=True, index=True)
     start_loc = Column(String, nullable=False)
     end_loc = Column(String, nullable=False)
-    flight_name = Column(String, nullable=False)
+    airline_name = Column(String, nullable=False)
     coupon_id = Column(Integer, ForeignKey("coupon.id"), default= None)
 

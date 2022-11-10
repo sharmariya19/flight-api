@@ -45,7 +45,7 @@ def get_parameters(id:int, db:Session):
     amount, coupon_status = get_amount(booking ,db)
 
     ref = ShowBookedFlight( passenger = passenger.name, 
-        flight_name = flight.flight_name, 
+        airline_name = flight.airline_name, 
         source = route.source ,
         destination = route.destination,
         status = obj.status , 

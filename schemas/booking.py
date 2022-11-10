@@ -7,7 +7,7 @@ class BookFlight(BaseModel):
 
 class ShowBookedFlight(BaseModel):
     passenger:str
-    flight_name:str
+    airline_name:str
     source:str
     destination:str
     status:str
