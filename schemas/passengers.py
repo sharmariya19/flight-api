@@ -1,18 +1,14 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 
 
-class Passenger(BaseModel):
+class PassengerCreate(BaseModel):
     name:str
     gender:str
     age:int
     contact:str
-    email:EmailStr
     nationality:str
 
-class PassengerCreate(Passenger):
-    password:str
-
-class ShowPassenger(Passenger):
+class ShowPassenger(PassengerCreate):
     id:int
     class Config:
         orm_mode = True

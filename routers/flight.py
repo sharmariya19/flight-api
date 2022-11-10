@@ -4,15 +4,13 @@ from database import get_db
 from sqlalchemy.orm import Session
 from crud_func.flightfun import create_new_flight, get_all_flights, delete_flight_by_id
 from typing import List
-from models.flights import Flight
+from routers.login import oauth2_scheme
 
 router = APIRouter( tags= ['flight'])
 
 
-@router.post(
-    "/flight", status_code=status.HTTP_201_CREATED
-)
-def create_flight(flight: FlightCreate, db: Session = Depends(get_db)):
+@router.post("/flight", status_code=status.HTTP_201_CREATED)
+def create_flight(flight: FlightCreate, db: Session = Depends(get_db), token:str=Depends(oauth2_scheme)):
     new_flight = create_new_flight(flight=flight, db=db)
     return f"successfully created flight from {new_flight.start_loc} to {new_flight.end_loc}"
 
@@ -25,7 +23,7 @@ def get_flights(db: Session = Depends(get_db)):
 
 
 @router.delete("/flight/{id}", status_code=status.HTTP_200_OK)
-def delete_flight(id:int , db:Session= Depends(get_db)):
+def delete_flight(id:int , db:Session= Depends(get_db), token:str=Depends(oauth2_scheme)):
     obj = delete_flight_by_id(id=id, db=db)
     return f"successfully deleted flight with id:{id}"
 

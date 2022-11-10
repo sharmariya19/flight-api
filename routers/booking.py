@@ -3,8 +3,8 @@ from schemas.booking import BookFlight, ShowBookedFlight
 from database import get_db
 from sqlalchemy.orm import Session
 from crud_func.bookingfun import book_new_flight, get_booking, delete_booking_by_id, get_all_booking
-from models.booking import Booking
 from typing import List
+from routers.login import oauth2_scheme
 
 router = APIRouter(tags = ['booking'])
 
@@ -22,12 +22,12 @@ def get_booking_by_id(id:int , db: Session = Depends(get_db)):
     return ref
 
 @router.get("/booking", response_model=List[ShowBookedFlight], status_code=status.HTTP_200_OK)
-def get__all_booking(db: Session = Depends(get_db)):
+def get__all_booking(db: Session = Depends(get_db), token:str=Depends(oauth2_scheme)):
     ref = get_all_booking(db=db)
     return ref
 
 
 @router.delete("/booking/{id}" , response_model=ShowBookedFlight, status_code=status.HTTP_200_OK)
-def delete_booking(id:int , db:Session= Depends(get_db)):
+def delete_booking(id:int , db:Session= Depends(get_db), token:str=Depends(oauth2_scheme)):
     obj = delete_booking_by_id(id=id, db=db)
     return obj

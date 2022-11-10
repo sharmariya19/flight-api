@@ -4,7 +4,7 @@ from database import get_db
 from sqlalchemy.orm import Session
 from crud_func.passengerfun import create_new_passenger, get_all_passengers, delete_passenger_by_id
 from typing import List
-from models.passengers import Passenger
+from routers.login import oauth2_scheme
 
 router = APIRouter(tags = ['passenger'])
 
@@ -18,12 +18,8 @@ def create_passenger(passenger: PassengerCreate, db: Session = Depends(get_db)):
 
 
 
-@router.get(
-    "/passenger",
-    response_model=List[ShowPassenger],
-    status_code=status.HTTP_200_OK,
-)
-def get_passengers(db: Session = Depends(get_db)):
+@router.get("/passenger",response_model=List[ShowPassenger],status_code=status.HTTP_200_OK)
+def get_passengers(db: Session = Depends(get_db), token:str=Depends(oauth2_scheme)):
     ref = get_all_passengers(db=db)
     return ref
 

@@ -4,7 +4,6 @@ from database import get_db
 from sqlalchemy.orm import Session
 from crud_func.paymentfun import create_new_payment, get_payment_by_id
 from typing import List
-from models.payment import Payment
 
 router = APIRouter(tags = ['payment'])
 

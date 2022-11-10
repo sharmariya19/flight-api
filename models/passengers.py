@@ -10,7 +10,5 @@ class Passenger(Base):
     gender = Column(String)
     age = Column(Integer)
     contact = Column(String, nullable=False)
-    email = Column(String, nullable=False, unique=True)
-    hash_password = Column(String, nullable=False)
     nationality = Column(String, nullable=False)
 

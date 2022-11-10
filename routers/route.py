@@ -4,15 +4,13 @@ from database import get_db
 from sqlalchemy.orm import Session
 from crud_func.routefun import create_new_route, get_all_routes, delete_route_by_id
 from typing import List
-from models.routes import Route
+from routers.login import oauth2_scheme
 
 router = APIRouter(tags = ['route'])
 
 
-@router.post(
-    "/route", status_code=status.HTTP_201_CREATED
-)
-def create_route(route: RouteCreate, db: Session = Depends(get_db)):
+@router.post("/route", status_code=status.HTTP_201_CREATED)
+def create_route(route: RouteCreate, db: Session = Depends(get_db), token:str=Depends(oauth2_scheme)):
     new_route = create_new_route(route = route, db=db)
     return f"Successfully created route from {new_route.source} to {new_route.destination}"
 
@@ -25,6 +23,6 @@ def get_routes(db: Session = Depends(get_db)):
 
 
 @router.delete("/route/{id}" , response_model=ShowRoute, status_code=status.HTTP_200_OK)
-def delete_route(id:int , db:Session= Depends(get_db)):
+def delete_route(id:int , db:Session= Depends(get_db), token:str=Depends(oauth2_scheme)):
     obj = delete_route_by_id(id=id, db=db)
     return f"successfully deleted route from {obj.source} to {obj.destination}"

@@ -2,13 +2,9 @@ from fastapi import Depends
 from schemas.payment import ShowPayment, CreatePayment
 from sqlalchemy.orm import Session
 from models.payment import Payment
-from models.coupon import Coupon
-from models.flightroute import FlightRoute
-from models.flights import Flight
 from models.booking import Booking
 import string, random
 from crud_func.bookingfun import booking_done, get_amount
-from database import get_db
 
 
 

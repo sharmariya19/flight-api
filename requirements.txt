@@ -7,3 +7,5 @@ sqlalchemy
 pydantic
 psycopg2
 passlib
+
+python-multipart

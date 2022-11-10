@@ -2,7 +2,6 @@ from fastapi import HTTPException, status
 from schemas.routes import RouteCreate
 from sqlalchemy.orm import Session
 from models.routes import Route
-from models.flights import Flight
 
 
 def create_new_route(route: RouteCreate, db: Session):
