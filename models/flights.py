@@ -6,8 +6,7 @@ class Flight(Base):
     __tablename__ = "flight"
     
     id = Column(Integer, primary_key=True, index=True)
-    start_loc = Column(String, nullable=False)
-    end_loc = Column(String, nullable=False)
     airline_name = Column(String, nullable=False)
-    coupon_id = Column(Integer, ForeignKey("coupon.id"), default= None)
-
+    serial_no = Column(Integer, nullable=False)
+    type = Column(String, nullable=False)
+    seats = Column(Integer, nullable=False)

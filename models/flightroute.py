@@ -10,4 +10,5 @@ class FlightRoute(Base):
     fare = Column(Integer, nullable=False)
     takeoff_time =  Column(String, nullable=False)
     landing_time = Column(String, nullable=False)
-    available_seats = Column(Integer, nullable=False)
+    coupon_id = Column(Integer, ForeignKey("coupon.id"), nullable= True)
+    available_seats = Column(Integer, nullable= False)

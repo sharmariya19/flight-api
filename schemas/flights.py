@@ -3,10 +3,10 @@ from typing import Optional
 
 
 class FlightCreate(BaseModel):
-    start_loc:str
-    end_loc:str
     airline_name:str
-    coupon_id: Optional[int] = None
+    serial_no:int
+    type:str
+    seats:int
 
 class ShowFlight(FlightCreate):
     id:int

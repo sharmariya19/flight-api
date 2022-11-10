@@ -19,13 +19,15 @@ def flight_route(id:int, db:Session):
         fare = object.fare,
         takeoff_time = object.takeoff_time,
         landing_time = object.landing_time,
-        available_seats= object.available_seats 
+        available_seats = flight.seats 
     )
     return ref
 
 
 def new_flight_route(flight: CreateFlightRoute, db: Session):
+    obj = db.query(Flight).get(flight.flight_id)
     new_flight = FlightRoute(**flight.dict())
+    new_flight.available_seats = obj.seats
     db.add(new_flight)
     db.commit()
     db.refresh(new_flight)

@@ -13,13 +13,11 @@ def get_amount(booking:Booking , db: Session):
     status = "Not Applied"
     discount = 0
     flight_route = db.query(FlightRoute).get(booking.flight_route_id)
-    flight = db.query(Flight).get(flight_route.flight_id)
-
     amount = flight_route.fare
 
-    if flight.coupon_id:
+    if flight_route.coupon_id:
         status = "Applied"
-        obj = db.query(Coupon).get(flight.coupon_id)
+        obj = db.query(Coupon).get(flight_route.coupon_id)
         discount = obj.discount
 
     return amount - discount, status

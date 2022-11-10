@@ -14,7 +14,7 @@ router = APIRouter( tags= ['flight'])
 def create_flight(flight: FlightCreate, db: Session = Depends(get_db), token:str=Depends(oauth2_scheme)):
     if get_authorize(token,db):
         new_flight = create_new_flight(flight=flight, db=db)
-        return f"successfully created flight from {new_flight.start_loc} to {new_flight.end_loc}"
+        return f"successfully created flight "
 
 
 
