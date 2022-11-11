@@ -76,7 +76,7 @@ def get_parameters(id:int, db:Session):
 
 
 def book_new_flight(obj: BookFlight, db: Session):
-    amount , status = get_amount(obj, db)
+    amount , couponstatus = get_amount(obj, db)
     new_booking = Booking(**obj.dict())
     db.add(new_booking)
     db.commit()
