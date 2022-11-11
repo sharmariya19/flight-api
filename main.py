@@ -1,12 +1,12 @@
 from fastapi import FastAPI
-from routers import coupon, passenger, flight, route, booking, payment, flightroute, login, user
+from routers import coupon, passenger, flight, route, booking, payment, flightroute, login
 from database import Base, engine
 
 app = FastAPI(title="Flights API")
 
 Base.metadata.create_all(bind=engine)
 
-app.include_router(user.router)
+
 app.include_router(passenger.router)
 app.include_router(flight.router)
 app.include_router(route.router)
