@@ -2,8 +2,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from database import get_db
-from models.user import User
-from crud_func.userfun import create_new_user
+from models.passengers import Passenger
 from hashing import Hasher
 from jose import jwt
 
@@ -13,7 +12,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 
 @router.post("/token")
 def retrieve_token(form_data:OAuth2PasswordRequestForm = Depends(), db:Session=Depends(get_db)):
-    user = db.query(User).filter(User.email == form_data.username).first()
+    user = db.query(Passenger).filter(Passenger.email == form_data.username).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid username")
 
