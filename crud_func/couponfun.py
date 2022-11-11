@@ -2,6 +2,7 @@ from fastapi import HTTPException, status
 from schemas.coupon import CouponCreate
 from sqlalchemy.orm import Session
 from models.coupon import Coupon
+import datetime
 
 
 def create_new_coupon(obj: CouponCreate, db: Session):

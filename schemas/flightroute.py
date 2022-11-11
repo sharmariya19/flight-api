@@ -5,8 +5,7 @@ class FlightRoute(BaseModel):
     fare:int
     takeoff_time:str
     landing_time:str
-    coupon_id:Optional[int] = None
-
+    
 class CreateFlightRoute(FlightRoute):
     flight_id:int
     route_id:int

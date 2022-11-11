@@ -1,4 +1,4 @@
-from fastapi import Depends
+from fastapi import Depends, HTTPException, status
 from schemas.payment import ShowPayment, CreatePayment
 from sqlalchemy.orm import Session
 from models.payment import Payment
@@ -10,14 +10,19 @@ from crud_func.bookingfun import booking_done, get_amount
 
 def create_new_payment(payment: CreatePayment, db: Session):
     booking = db.query(Booking).get(payment.booking_id)
-    paid_amount,status = get_amount(booking, db)
+    
+
+    if booking.status == "Booked":
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Payment already done for this booking")
+
+    paid_amount,couponstatus = get_amount(booking, db)
 
     new_payment = Payment(
         bank_name = payment.bank_name,
         booking_id = payment.booking_id,
         payment_mode = payment.payment_mode,
         paid_amount = paid_amount,
-        coupon_status = status,
+        coupon_status = couponstatus,
         transaction_id = ''.join(random.choices(string.ascii_uppercase +
                              string.digits, k=10))
         )

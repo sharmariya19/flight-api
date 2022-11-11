@@ -6,7 +6,7 @@ from models.passengers import Passenger
 from hashing import Hasher
 from jose import jwt
 
-router = APIRouter(tags= ['loogin'])
+router = APIRouter(tags= ['login'])
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 
